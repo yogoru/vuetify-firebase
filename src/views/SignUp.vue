@@ -20,36 +20,13 @@
                     >
                         <v-toolbar-title>SignUp</v-toolbar-title>
                         <div class="flex-grow-1"></div>
-<!--                        <v-tooltip bottom>-->
-<!--                            <template v-slot:activator="{ on }">-->
-<!--                                <v-btn-->
-<!--                                        :href="source"-->
-<!--                                        icon-->
-<!--                                        large-->
-<!--                                        target="_blank"-->
-<!--                                        v-on="on"-->
-<!--                                >-->
-<!--                                    <v-icon>mdi-code-tags</v-icon>-->
-<!--                                </v-btn>-->
-<!--                            </template>-->
-<!--                            <span>Source</span>-->
-<!--                        </v-tooltip>-->
-<!--                        <v-tooltip right>-->
-<!--                            <template v-slot:activator="{ on }">-->
-<!--                                <v-btn-->
-<!--                                        icon-->
-<!--                                        large-->
-<!--                                        href="https://codepen.io/johnjleider/pen/pMvGQO"-->
-<!--                                        target="_blank"-->
-<!--                                        v-on="on"-->
-<!--                                >-->
-<!--                                    <v-icon>mdi-codepen</v-icon>-->
-<!--                                </v-btn>-->
-<!--                            </template>-->
-<!--                            <span>Codepen</span>-->
-<!--                        </v-tooltip>-->
                     </v-toolbar>
                     <v-card-text>
+                        <v-alert
+                                :value="error"
+                                type="warning">
+                            {{error}}
+                        </v-alert>
                         <v-form>
                             <v-text-field
                                     label="E-Mail"
@@ -73,7 +50,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <div class="flex-grow-1"></div>
-                        <v-btn color="" @click.prevent="signup">Sign Up</v-btn>
+                        <v-btn color="" @click.prevent="signup" :disabled="processing">Sign Up</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -88,6 +65,23 @@
             return{
                 email:null,
                 password:null
+            }
+        },
+        computed:{
+            error(){
+                return this.$store.getters.getError
+            },
+            processing(){
+                return this.$store.getters.getProcessing
+            },
+            isUserAuthenticated(){
+                return this.$store.getters.isUserAuthenticated
+            }
+        },
+        watch:{
+            isUserAuthenticated(val){
+                if(val === true)
+                    this.$router.push("/")
             }
         },
         methods:{
