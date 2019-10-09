@@ -9,13 +9,18 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "firebase": "^7.1.0",
     "material-design-icons": "^3.0.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
+    "vue-social-sharing": "^2.4.6",
     "vuetify": "^2.0.19",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/vue-fontawesome": "^0.1.7",
     "@mdi/font": "^4.4.95",
     "@mdi/js": "^4.4.95",
     "@vue/cli-plugin-babel": "^3.11.0",
