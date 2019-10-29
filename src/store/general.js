@@ -10,7 +10,7 @@ export default {
         SET_ERROR(state,payload) {
             state.error = payload
         },
-        CLEAR_ERROR(state){
+        CLEAN_ERROR(state){
             state.error = null
         }
     },
