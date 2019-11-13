@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Books from './views/Books'
+import Items from './views/Items'
 import Words from './views/Words'
 import LogOut from "./views/LogOut"
 import Profile from "./views/Profile"
 import SignIn from "./views/SignIn"
 import SignUp from "./views/SignUp"
+import Store from "./store"
 
 Vue.use(Router)
 
@@ -18,9 +19,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/books',
-      name: 'books',
-      component: Books
+      path: '/items',
+      name: 'items',
+      component: Items
     },
     {
       path: '/words',
@@ -35,7 +36,8 @@ export default new Router({
     {
       path: '/profile',
       name: 'profile',
-      component: Profile
+      component: Profile,
+      beforeEnter:AuthGuard
     },
     {
       path: '/signin',
@@ -50,3 +52,10 @@ export default new Router({
   ],
   mode:'history'
 })
+
+function AuthGuard(from,to,next) {
+  if (Store.getters.isUserAuthenticated)
+    next()
+  else
+    next('/signin')
+}

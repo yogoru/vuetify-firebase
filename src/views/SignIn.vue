@@ -27,7 +27,7 @@
                                 type="warning">
                             {{error}}
                         </v-alert>
-                        <v-form>
+                        <v-form v-model="valid">
                             <v-text-field
                                     label="E-Mail"
                                     name="login"
@@ -35,9 +35,11 @@
                                     type="email"
                                     required
                                     v-model="email"
+                                    :rules="emailRules"
                             ></v-text-field>
 
                             <v-text-field
+                                    @keyup.enter="signIn"
                                     id="password"
                                     label="Password"
                                     name="password"
@@ -45,12 +47,13 @@
                                     type="password"
                                     required
                                     v-model="password"
+                                    :rules="passwordRules"
                             ></v-text-field>
                         </v-form>
                     </v-card-text>
                     <v-card-actions>
                         <div class="flex-grow-1"></div>
-                        <v-btn color="" @click.prevent="signup" :disabled="processing">Sign In</v-btn>
+                        <v-btn color="" @click.prevent="signIn" :disabled="processing || ! valid">Sign In</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -64,7 +67,17 @@
         data(){
             return{
                 email:null,
-                password:null
+                password:null,
+                valid: false,
+
+                emailRules: [
+                    (v) => !!v || 'Pls Enter Email',
+                    (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Wrong Email'
+                ],
+                passwordRules: [
+                    (v) => !!v || 'Pls Enter Password',
+                    (v) => (v && v.length >= 6) || 'Password too short - minimum length is 6 characters'
+                ],
             }
         },
         computed:{
@@ -85,7 +98,7 @@
             }
         },
         methods:{
-            signup(){
+            signIn(){
                 this.$store.dispatch('SIGNIN',{email:this.email, password:this.password})
             }
         }
