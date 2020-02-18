@@ -10,14 +10,17 @@
             >
                 <v-container fluid>
                     <v-layout row>
-                        <v-flex>
-                            <v-text-field lavel="Search"></v-text-field>
+                        <v-flex xs7 md8>
+                            <v-text-field label="Search" v-model="searchTerm"></v-text-field>
+                        </v-flex>
+                        <v-flex xs5 md4>
+                            <v-select label="Level" :items="levels" v-model="level" multiple></v-select>
                         </v-flex>
                     </v-layout>
                 </v-container>
             </v-flex>
             <v-flex
-                    v-for="item in items"
+                    v-for="item in filteredItems"
                     :key="item.id"
                     xs12
                     sm10
@@ -26,8 +29,8 @@
                     offset-md2
             >
                 <v-card color="" class="black--text">
-                    <v-container fluid>
-                        <v-layout row>
+                    <v-container fluid class="hidden-xs-and-down">
+                        <v-layout row >
                             <v-flex xs4 md3>
                                 <v-img src="https://tiimg.tistatic.com/new_website1/ti-design/images/no-img-foung.png"
                                 >
@@ -40,14 +43,14 @@
                                         <div>Level: {{getItemLevel(item.level)}}</div>
                                 <v-card-actions>
                                     <v-rating
-                                            v-model="item.raiting"
+                                            v-model="item.rating"
                                             color="black"
                                             readonly
                                             dense
                                             half-increments
                                             background-color="white"
                                     ></v-rating>
-                                    <div class="ml-1">
+                                    <div class="ml-1 hidden-sm-and-down">
                                         <span>{{item.rating}}</span>
                                         <span> ({{item.ratingCount}})</span>
                                     </div>
@@ -66,9 +69,27 @@
 <script>
     export default {
         name: "Items",
+        data(){
+            return {
+                searchTerm: null,
+                level: [],
+                levels:['A1','A2','A3','B1','B2','B3','C1','C2','C3']
+            }
+        },
         computed:{
             items(){
                 return this.$store.getters.getItems
+            },
+            filteredItems(){
+                let items = this.items
+                if(this.searchTerm)
+                    items = items.filter(i => i.title.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >=0
+                    || i.description.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >=0)
+//intersect
+                if(this.level.length)
+                    items = items.filter(i => this.level.filter(val => i.level.indexOf(val) !== -1).length > 0)
+
+                return items
             }
         },
         methods:{
