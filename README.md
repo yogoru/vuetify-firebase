@@ -26,7 +26,7 @@ npm run lint
 ```
 ### Live Demo
 ```
-https://okodev.github.io/vuetify-firebase/
+[https://okodev.github.io/vuetify-firebase] (https://okodev.github.io/vuetify-firebase)
 ```
 
 ### Customize configuration
