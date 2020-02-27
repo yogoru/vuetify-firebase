@@ -24,6 +24,10 @@ npm run test
 ```
 npm run lint
 ```
+### Live Demo
+```
+https://okodev.github.io/vuetify-firebase
+```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
