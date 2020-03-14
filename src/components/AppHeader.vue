@@ -34,7 +34,7 @@
         </v-app-bar-nav-icon>
             <router-link to="/" tag="span" style="cursor:pointer">
         <v-toolbar-title >
-            <span>Learn</span>
+            <span>LearnApp</span>
             <span class="font-weight-light">App</span>
         </v-toolbar-title>
             </router-link>
