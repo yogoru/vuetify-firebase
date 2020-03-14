@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-footer :fixed="true" app>
-            <span>LearnEng</span>
+            <span>Learn</span>
             <span class="font-weight-light">App &copy;</span>
         </v-footer>
     </div>
