@@ -1,9 +1,9 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="File '...\tests\acceptance\TestGuestPageCept.php'" />
-    <option name="defaultScopeName" value="File '...\tests\acceptance\TestGuestPageCept.php'" />
+    <option name="customScope" value="Project 'yii2web.local'" />
+    <option name="defaultScopeName" value="Project 'yii2web.local'" />
     <option name="localCaseSensitive" value="true" />
     <option name="LOCAL_CASE_SENSITIVE_SEARCH" value="true" />
-    <option name="SEARCH_SCOPE" value="File '...\tests\acceptance\TestGuestPageCept.php'" />
+    <option name="SEARCH_SCOPE" value="Project 'yii2web.local'" />
   </component>
 </application>
